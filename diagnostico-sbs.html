@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico Comercial — Step Up Business Solutions</title>
+
+  <!-- Fuentes elegantes: Playfair Display para títulos, DM Sans para cuerpo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       VARIABLES DE COLOR Y TIPOGRAFÍA
+    ========================================================= */
+    :root {
+      --navy:       #00274D;
+      --navy-dark:  #001A33;
+      --red:        #FF4C4C;
+      --red-hover:  #e63e3e;
+      --teal:       #008080;
+      --teal-light: #009999;
+      --white:      #FFFFFF;
+      --bg:         #F0F4F8;
+      --card-bg:    #FFFFFF;
+      --text:       #1a2e3b;
+      --text-muted: #5a7080;
+      --border:     #d8e4ed;
+
+      --font-title: 'Playfair Display', Georgia, serif;
+      --font-body:  'DM Sans', system-ui, sans-serif;
+
+      --radius:     12px;
+      --shadow:     0 4px 24px rgba(0,39,77,0.10);
+      --shadow-lg:  0 8px 40px rgba(0,39,77,0.16);
+    }
+
+    /* =========================================================
+       RESET Y BASE
+    ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       ENCABEZADO — STEP UP BUSINESS SOLUTIONS
+    ========================================================= */
+    .header {
+      background: var(--navy);
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+
+    /* Bloque para el logo — reemplazar con <img> cuando esté disponible */
+    .logo-placeholder {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -1px;
+      flex-shrink: 0;
+    }
+
+    .header-text h1 {
+      font-family: var(--font-title);
+      font-size: clamp(16px, 3.5vw, 22px);
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .header-text p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       CONTENEDOR PRINCIPAL
+    ========================================================= */
+    .main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 16px 60px;
+    }
+
+    /* =========================================================
+       PANTALLA DE INICIO
+    ========================================================= */
+    .screen {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .screen.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Título principal del diagnóstico */
+    .intro-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .intro-title .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+
+    .intro-title h2 {
+      font-family: var(--font-title);
+      font-size: clamp(26px, 6vw, 38px);
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .intro-title p {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Tarjetas de presentación de planes (en intro) */
+    .plans-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    @media (max-width: 520px) {
+      .plans-preview { grid-template-columns: 1fr; }
+    }
+
+    .plan-preview-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border-top: 4px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .plan-preview-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .plan-preview-card.presencia { border-top-color: var(--teal); }
+    .plan-preview-card.comercial { border-top-color: var(--navy); }
+    .plan-preview-card.impulso   { border-top-color: var(--red); }
+
+    .plan-icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .plan-preview-card h3 {
+      font-family: var(--font-title);
+      font-size: 15px;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .plan-preview-card .plan-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .plan-preview-card.presencia .plan-tag { color: var(--teal); }
+    .plan-preview-card.comercial .plan-tag { color: var(--navy); }
+    .plan-preview-card.impulso   .plan-tag { color: var(--red); }
+
+    .plan-preview-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Nota introductoria */
+    .intro-note {
+      background: var(--navy);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .intro-note strong { color: var(--white); }
+
+    /* =========================================================
+       BOTÓN PRIMARIO (CTA)
+    ========================================================= */
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      letter-spacing: 0.3px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(255,76,76,0.30);
+      width: 100%;
+      text-align: center;
+    }
+    .btn-primary:hover {
+      background: var(--red-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255,76,76,0.38);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--border);
+      font-size: 13px;
+      padding: 10px 20px;
+    }
+    .btn-secondary:hover {
+      border-color: var(--navy);
+      background: rgba(0,39,77,0.04);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(37,211,102,0.30);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 15px;
+      padding: 15px 28px;
+    }
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37,211,102,0.38);
+    }
+
+    /* =========================================================
+       PANTALLA DE PREGUNTAS
+    ========================================================= */
+
+    /* Barra de progreso */
+    .progress-wrap {
+      margin-bottom: 28px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .progress-bar-bg {
+      background: var(--border);
+      border-radius: 99px;
+      height: 6px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--navy));
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+
+    /* Tarjeta de pregunta */
+    .question-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 32px 28px 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .question-number {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .question-text {
+      font-family: var(--font-title);
+      font-size: clamp(18px, 4vw, 22px);
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 26px;
+    }
+
+    /* Opciones de respuesta */
+    .options-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option-btn {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.18s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option-btn:hover {
+      border-color: var(--teal);
+      background: rgba(0,128,128,0.06);
+      color: var(--navy);
+    }
+
+    .option-btn.selected {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* Ícono circular de opción */
+    .option-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      transition: all 0.18s;
+    }
+
+    .option-btn.selected .option-dot {
+      background: var(--white);
+      color: var(--navy);
+      border-color: var(--white);
+    }
+
+    /* Botón siguiente */
+    .btn-next {
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(0,39,77,0.20);
+      width: 100%;
+      text-align: center;
+      opacity: 0.4;
+      pointer-events: none;
+      transition: opacity 0.2s, background 0.2s, transform 0.15s;
+    }
+
+    .btn-next.enabled {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .btn-next.enabled:hover {
+      background: var(--navy-dark);
+      transform: translateY(-1px);
+    }
+
+    /* =========================================================
+       PANTALLA DE RESULTADO
+    ========================================================= */
+    .result-header {
+      text-align: center;
+      padding: 36px 24px 28px;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-header.presencia { background: var(--teal); }
+    .result-header.comercial { background: var(--navy); }
+    .result-header.impulso   { background: var(--red); }
+
+    /* Decoración de fondo en el resultado */
+    .result-header::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .result-header::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -20px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .result-icon {
+      font-size: 44px;
+      margin-bottom: 14px;
+    }
+
+    .result-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 8px;
+    }
+
+    .result-plan-name {
+      font-family: var(--font-title);
+      font-size: clamp(28px, 7vw, 40px);
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .result-tagline {
+      font-size: 16px;
+      color: rgba(255,255,255,0.88);
+      font-weight: 300;
+    }
+
+    /* Tarjeta de detalle del resultado */
+    .result-detail {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .result-detail h3 {
+      font-family: var(--font-title);
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .result-detail p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .result-benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .benefit-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .result-benefit p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Sección de CTA — demo/contacto */
+    .cta-section {
+      background: var(--navy);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.80);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .cta-section h3 {
+      font-family: var(--font-title);
+      font-size: clamp(18px, 4.5vw, 22px);
+      color: var(--white);
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+
+    /* Botón de reinicio */
+    .restart-wrap {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* =========================================================
+       DIVISOR VISUAL
+    ========================================================= */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* =========================================================
+       UTILIDADES
+    ========================================================= */
+    .text-center { text-align: center; }
+    .mt-8  { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mb-8  { margin-bottom: 8px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       ENCABEZADO CON MARCA
+  ========================================================= -->
+  <header class="header">
+    <!-- LOGO: Reemplazar este bloque por <img src="tu-logo.png" alt="Logo" style="height:48px;"> -->
+    <div class="logo-placeholder">SU</div>
+    <div class="header-text">
+      <h1>Step Up Business Solutions</h1>
+      <p>Diagnóstico Comercial Rápido</p>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       CONTENIDO PRINCIPAL
+  ========================================================= -->
+  <main class="main">
+
+    <!-- ─── PANTALLA 1: INTRO ─── -->
+    <section id="screen-intro" class="screen active">
+
+      <div class="intro-title">
+        <div class="eyebrow">Herramienta de diagnóstico</div>
+        <h2>¿Qué necesita su negocio hoy?</h2>
+        <p>No todos los negocios necesitan lo mismo. En menos de 2 minutos, identifiquemos cuál es su prioridad real.</p>
+      </div>
+
+      <!-- Vista previa de los tres planes -->
+      <div class="plans-preview">
+        <div class="plan-preview-card presencia">
+          <div class="plan-icon">📍</div>
+          <h3>Presencia</h3>
+          <div class="plan-tag">Ubica</div>
+          <p>Que sus clientes lo encuentren cuando lo buscan.</p>
+        </div>
+        <div class="plan-preview-card comercial">
+          <div class="plan-icon">📋</div>
+          <h3>Comercial</h3>
+          <div class="plan-tag">Muestra</div>
+          <p>Que entiendan claramente qué ofrece y por qué elegirle.</p>
+        </div>
+        <div class="plan-preview-card impulso">
+          <div class="plan-icon">🚀</div>
+          <h3>Impulso</h3>
+          <div class="plan-tag">Potencia</div>
+          <p>Que su negocio genere más consultas y más clientes.</p>
+        </div>
+      </div>
+
+      <!-- Nota contextual -->
+      <div class="intro-note">
+        <strong>¿Por qué esto importa?</strong><br>
+        Muchos negocios invierten tiempo y dinero en el área equivocada. Este diagnóstico le muestra con claridad cuál es el punto de partida más estratégico para su situación actual.
+      </div>
+
+      <button class="btn btn-primary" onclick="iniciarDiagnostico()">
+        Iniciar diagnóstico →
+      </button>
+
+    </section>
+
+    <!-- ─── PANTALLA 2: PREGUNTAS ─── -->
+    <section id="screen-preguntas" class="screen">
+
+      <!-- Barra de progreso -->
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span id="progreso-texto">Pregunta 1 de 9</span>
+          <span id="progreso-pct">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="barra-progreso" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Tarjeta de la pregunta actual -->
+      <div class="question-card">
+        <div class="question-number" id="etiqueta-numero">Pregunta 1</div>
+        <div class="question-text" id="texto-pregunta">Cargando pregunta...</div>
+        <div class="options-grid" id="contenedor-opciones">
+          <!-- Las opciones se inyectan dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Botón para avanzar (se activa al seleccionar respuesta) -->
+      <button class="btn btn-next" id="btn-siguiente" onclick="siguientePregunta()">
+        Continuar →
+      </button>
+
+    </section>
+
+    <!-- ─── PANTALLA 3: RESULTADO ─── -->
+    <section id="screen-resultado" class="screen">
+
+      <!-- Encabezado de color según el plan recomendado -->
+      <div class="result-header" id="resultado-header">
+        <div class="result-icon" id="resultado-icono">📍</div>
+        <div class="result-eyebrow">Plan recomendado</div>
+        <div class="result-plan-name" id="resultado-nombre">Presencia</div>
+        <div class="result-tagline" id="resultado-tagline">Su negocio necesita ser encontrado.</div>
+      </div>
+
+      <!-- Detalle del resultado -->
+      <div class="result-detail">
+        <h3 id="resultado-razon-titulo">¿Por qué este plan?</h3>
+        <p id="resultado-razon-texto">Explicación...</p>
+        <div class="result-benefit">
+          <div class="benefit-icon" id="resultado-beneficio-icono">✅</div>
+          <p id="resultado-beneficio-texto">Beneficio principal.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Llamado a la acción — demo en WhatsApp -->
+      <div class="cta-section">
+        <p>¿Quiere ver cómo se vería esto aplicado a su negocio?</p>
+        <h3>Le mostramos una demo personalizada, sin costo.</h3>
+        <a
+          id="btn-whatsapp"
+          class="btn btn-whatsapp"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <!-- Ícono de WhatsApp en SVG inline -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Solicitar demostración por WhatsApp
+        </a>
+      </div>
+
+      <!-- Botón de reinicio -->
+      <div class="restart-wrap">
+        <button class="btn btn-secondary mt-16" onclick="reiniciar()">
+          ↩ Hacer el diagnóstico de nuevo
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       LÓGICA DEL DIAGNÓSTICO — JAVASCRIPT
+  ========================================================= -->
+  <script>
+
+    /* ---------------------------------------------------------
+       DATOS DE LAS PREGUNTAS
+       Cada pregunta tiene:
+       - texto: el enunciado visible
+       - opciones: array de { etiqueta, categoria, puntos }
+         categoria puede ser 'presencia', 'comercial', 'impulso' o null (neutro)
+    --------------------------------------------------------- */
+    const preguntas = [
+      {
+        texto: "¿Sus clientes pueden encontrar fácilmente su dirección, horarios y teléfono cuando buscan su negocio en internet?",
+        opciones: [
+          { etiqueta: "Sí, sin problema",      categoria: null,        puntos: 0 },
+          { etiqueta: "No, es difícil de encontrar", categoria: "presencia", puntos: 1 },
+        ]
+      },
+      {
+        texto: "¿Ha recibido quejas o comentarios de clientes que no pudieron encontrar información básica de su negocio?",
+        opciones: [
+          { etiqueta: "Sí, me ha pasado",      categoria: "presencia", puntos: 1 },
+          { etiqueta: "No, no ha ocurrido",    categoria: null,        puntos: 0 },
+        ]
+      },
+      {
+        texto: "Cuando alguien busca por su nombre o tipo de negocio en Google, ¿aparece su establecimiento?",
+        opciones: [
+          { etiqueta: "Sí, aparezco",           categoria: null,        puntos: 0 },
+          { etiqueta: "No, o no lo sé con certeza", categoria: "presencia", puntos: 1 },
+        ]
+      },
+      {
+        texto: "¿Sus clientes potenciales entienden con claridad qué ofrece y en qué se diferencia de la competencia?",
+        opciones: [
+          { etiqueta: "Sí, es muy claro",       categoria: null,        puntos: 0 },
+          { etiqueta: "No, suele haber confusión", categoria: "comercial", puntos: 1 },
+        ]
+      },
+      {
+        texto: "¿Cuenta con una forma profesional y visualmente atractiva de presentar sus productos, servicios o menú?",
+        opciones: [
+          { etiqueta: "Sí, tengo algo",         categoria: null,        puntos: 0 },
+          { etiqueta: "No, me falta eso",        categoria: "comercial", puntos: 1 },
+        ]
+      },
+      {
+        texto: "¿Sus clientes suelen hacerle preguntas básicas que deberían quedar claras desde el primer contacto?",
+        opciones: [
+          { etiqueta: "Sí, pasa con frecuencia", categoria: "comercial", puntos: 1 },
+          { etiqueta: "No, generalmente entienden", categoria: null,     puntos: 0 },
+        ]
+      },
+      {
+        texto: "¿Quisiera recibir más consultas, pedidos o visitas de clientes nuevos que aún no lo conocen?",
+        opciones: [
+          { etiqueta: "Sí, definitivamente",    categoria: "impulso",   puntos: 1 },
+          { etiqueta: "Por ahora estoy bien",   categoria: null,        puntos: 0 },
+        ]
+      },
+      {
+        texto: "¿Siente que sus competidores tienen mejor presencia digital o mayor visibilidad que su negocio?",
+        opciones: [
+          { etiqueta: "Sí, están por delante",  categoria: "impulso",   puntos: 1 },
+          { etiqueta: "No, estamos al mismo nivel", categoria: null,    puntos: 0 },
+        ]
+      },
+      {
+        texto: "¿Ha intentado promocionarse (redes sociales, volantes, voz a voz) sin obtener los resultados esperados?",
+        opciones: [
+          { etiqueta: "Sí, sin buenos resultados", categoria: "impulso", puntos: 1 },
+          { etiqueta: "No lo he intentado aún",    categoria: null,      puntos: 0 },
+        ]
+      }
+    ];
+
+    /* ---------------------------------------------------------
+       DATOS DE LOS RESULTADOS POR PLAN
+    --------------------------------------------------------- */
+    const resultados = {
+      presencia: {
+        nombre:          "Plan Presencia",
+        tagline:         "Su prioridad es que su negocio se ubique con claridad.",
+        icono:           "📍",
+        clase:           "presencia",
+        razonTitulo:     "¿Por qué Presencia?",
+        razonTexto:      "Los síntomas muestran que su negocio tiene dificultades para ser encontrado en línea. Sus clientes potenciales lo buscan pero no encuentran datos básicos como dirección, horario o contacto. Antes de mostrar o vender, necesita estar visible.",
+        beneficioIcono:  "✅",
+        beneficioTexto:  "Con este plan, su negocio aparecerá de forma clara y profesional cuando alguien lo busque, con toda la información que un cliente necesita para llegar hasta usted.",
+        whatsapp:        "Hola, acabo de hacer el diagnóstico y me recomendaron el Plan Presencia. Me gustaría ver una demo para mi negocio."
+      },
+      comercial: {
+        nombre:          "Plan Comercial",
+        tagline:         "Su prioridad es mostrar mejor lo que ofrece.",
+        icono:           "📋",
+        clase:           "comercial",
+        razonTitulo:     "¿Por qué Comercial?",
+        razonTexto:      "Sus clientes lo encuentran, pero no quedan del todo convencidos de lo que ofrece o por qué elegirle a usted. Le falta una presentación más clara y profesional de sus productos, servicios o propuesta de valor.",
+        beneficioIcono:  "✅",
+        beneficioTexto:  "Con este plan, sus clientes potenciales entenderán de inmediato qué hace, qué ofrece y por qué su negocio es la mejor opción — antes de que usted tenga que explicarlo.",
+        whatsapp:        "Hola, acabo de hacer el diagnóstico y me recomendaron el Plan Comercial. Me gustaría ver una demo para mi negocio."
+      },
+      impulso: {
+        nombre:          "Plan Impulso",
+        tagline:         "Su prioridad es potenciar su presencia comercial.",
+        icono:           "🚀",
+        clase:           "impulso",
+        razonTitulo:     "¿Por qué Impulso?",
+        razonTexto:      "Su negocio ya tiene base, pero necesita generar más demanda activa. Quiere atraer más clientes nuevos, destacar frente a la competencia y hacer que su presencia digital trabaje para usted todos los días.",
+        beneficioIcono:  "✅",
+        beneficioTexto:  "Con este plan, su negocio ganará visibilidad estratégica, generará más consultas y convertirá su presencia en línea en una herramienta real de ventas.",
+        whatsapp:        "Hola, acabo de hacer el diagnóstico y me recomendaron el Plan Impulso. Me gustaría ver una demo para mi negocio."
+      }
+    };
+
+    /* ---------------------------------------------------------
+       ESTADO GLOBAL DEL DIAGNÓSTICO
+    --------------------------------------------------------- */
+    let preguntaActual    = 0;
+    let opcionSeleccionada = null;
+    const puntajes = { presencia: 0, comercial: 0, impulso: 0 };
+
+    /* ---------------------------------------------------------
+       NÚMERO DE WHATSAPP — Step Up Business Solutions
+    --------------------------------------------------------- */
+    const WHATSAPP_NUMERO = "573005171856"; // formato internacional sin +
+
+    /* ---------------------------------------------------------
+       FUNCIONES DE NAVEGACIÓN ENTRE PANTALLAS
+    --------------------------------------------------------- */
+    function mostrarPantalla(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* Inicia el flujo de preguntas desde cero */
+    function iniciarDiagnostico() {
+      preguntaActual      = 0;
+      opcionSeleccionada  = null;
+      puntajes.presencia  = 0;
+      puntajes.comercial  = 0;
+      puntajes.impulso    = 0;
+      mostrarPantalla('screen-preguntas');
+      renderizarPregunta();
+    }
+
+    /* Reinicia todo el diagnóstico */
+    function reiniciar() {
+      mostrarPantalla('screen-intro');
+    }
+
+    /* ---------------------------------------------------------
+       RENDERIZADO DE CADA PREGUNTA
+    --------------------------------------------------------- */
+    function renderizarPregunta() {
+      const total = preguntas.length;
+      const actual = preguntaActual + 1;
+      const pregunta = preguntas[preguntaActual];
+
+      // Actualizar barra de progreso
+      const pct = Math.round(((actual - 1) / total) * 100);
+      document.getElementById('barra-progreso').style.width = pct + '%';
+      document.getElementById('progreso-texto').textContent = `Pregunta ${actual} de ${total}`;
+      document.getElementById('progreso-pct').textContent   = pct + '%';
+
+      // Actualizar texto de la pregunta
+      document.getElementById('etiqueta-numero').textContent = `Pregunta ${actual}`;
+      document.getElementById('texto-pregunta').textContent  = pregunta.texto;
+
+      // Renderizar opciones de respuesta
+      const contenedor = document.getElementById('contenedor-opciones');
+      contenedor.innerHTML = '';
+
+      pregunta.opciones.forEach((opcion, idx) => {
+        const btn = document.createElement('button');
+        btn.className   = 'option-btn';
+        btn.dataset.idx = idx;
+        btn.innerHTML   = `<span class="option-dot"></span> ${opcion.etiqueta}`;
+        btn.onclick = () => seleccionarOpcion(idx);
+        contenedor.appendChild(btn);
+      });
+
+      // Resetear selección y botón siguiente
+      opcionSeleccionada = null;
+      const btnSig = document.getElementById('btn-siguiente');
+      btnSig.classList.remove('enabled');
+    }
+
+    /* ---------------------------------------------------------
+       MANEJO DE SELECCIÓN DE OPCIÓN
+    --------------------------------------------------------- */
+    function seleccionarOpcion(idx) {
+      // Marcar visualmente la opción elegida
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      const btnElegido = document.querySelector(`.option-btn[data-idx="${idx}"]`);
+      if (btnElegido) btnElegido.classList.add('selected');
+
+      // Guardar selección actual
+      opcionSeleccionada = idx;
+
+      // Habilitar botón de siguiente
+      document.getElementById('btn-siguiente').classList.add('enabled');
+    }
+
+    /* ---------------------------------------------------------
+       AVANZAR A LA SIGUIENTE PREGUNTA
+    --------------------------------------------------------- */
+    function siguientePregunta() {
+      if (opcionSeleccionada === null) return;
+
+      // Sumar puntos según la opción elegida
+      const opcion = preguntas[preguntaActual].opciones[opcionSeleccionada];
+      if (opcion.categoria && opcion.puntos) {
+        puntajes[opcion.categoria] += opcion.puntos;
+      }
+
+      preguntaActual++;
+
+      if (preguntaActual < preguntas.length) {
+        // Renderizar la siguiente pregunta
+        opcionSeleccionada = null;
+        renderizarPregunta();
+      } else {
+        // Todas las preguntas respondidas — mostrar resultado
+        mostrarResultado();
+      }
+    }
+
+    /* ---------------------------------------------------------
+       CALCULAR Y MOSTRAR RESULTADO
+    --------------------------------------------------------- */
+    function mostrarResultado() {
+      /* Determinar el plan ganador.
+         En caso de empate, prioridad: impulso > comercial > presencia */
+      let planGanador = 'presencia';
+
+      if (
+        puntajes.comercial > puntajes.presencia ||
+        puntajes.comercial > puntajes.impulso
+      ) {
+        planGanador = 'comercial';
+      }
+
+      if (
+        puntajes.impulso > puntajes.presencia &&
+        puntajes.impulso >= puntajes.comercial
+      ) {
+        planGanador = 'impulso';
+      }
+
+      // Empate total → impulso (nivel más alto)
+      if (
+        puntajes.presencia === puntajes.comercial &&
+        puntajes.comercial === puntajes.impulso
+      ) {
+        planGanador = 'impulso';
+      }
+
+      const res = resultados[planGanador];
+
+      // Aplicar contenido al resultado
+      document.getElementById('resultado-header').className = `result-header ${res.clase}`;
+      document.getElementById('resultado-icono').textContent        = res.icono;
+      document.getElementById('resultado-nombre').textContent       = res.nombre;
+      document.getElementById('resultado-tagline').textContent      = res.tagline;
+      document.getElementById('resultado-razon-titulo').textContent = res.razonTitulo;
+      document.getElementById('resultado-razon-texto').textContent  = res.razonTexto;
+      document.getElementById('resultado-beneficio-icono').textContent = res.beneficioIcono;
+      document.getElementById('resultado-beneficio-texto').textContent = res.beneficioTexto;
+
+      // Construir enlace de WhatsApp con mensaje prellenado
+      const mensajeWA  = encodeURIComponent(res.whatsapp);
+      const urlWA      = `https://wa.me/${WHATSAPP_NUMERO}?text=${mensajeWA}`;
+      document.getElementById('btn-whatsapp').href = urlWA;
+
+      // Actualizar barra de progreso al 100%
+      document.getElementById('barra-progreso').style.width = '100%';
+      document.getElementById('progreso-pct').textContent   = '100%';
+      document.getElementById('progreso-texto').textContent = `Completado ✓`;
+
+      mostrarPantalla('screen-resultado');
+    }
+
+  </script>
+</body>
+</html>
